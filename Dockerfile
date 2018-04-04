@@ -1,6 +1,11 @@
 FROM alpine:edge
 
-LABEL maintainer="AndrewAi <yongchanlong@gmail.com>"
+LABEL maintainer="German Lashevich <german.lashevich@gmail.com>" \
+      org.label-schema.schema-version="1.0.0-rc.1" \
+      org.label-schema.name="zebradil/docker-moodle" \
+      org.label-schema.version="3.2-1" \
+      org.label-schema.description="Lightweight Moodle container based on Alpine Linux" \
+      org.label-schema.vcs-url="https://github.com/Zebradil/docker-moodle.git"
 
 EXPOSE 80
 
@@ -34,7 +39,7 @@ RUN apk update \
                        php7-ctype
 
 RUN cd /tmp \
- && git clone -b MOODLE_34_STABLE git://git.moodle.org/moodle.git --depth=1 \
+ && git clone -b MOODLE_32_STABLE git://git.moodle.org/moodle.git --depth=1 \
  && rm -rf /var/www/localhost/htdocs \
  && mv /tmp/moodle /var/www/localhost/htdocs \
  && chown apache:apache -R /var/www/localhost/htdocs \
@@ -45,9 +50,5 @@ RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log \
 
 COPY config-dist.php /var/www/localhost/htdocs/config.php
 COPY run.sh /opt/apache2/run.sh
-
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-# ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["/opt/apache2/run.sh"]
