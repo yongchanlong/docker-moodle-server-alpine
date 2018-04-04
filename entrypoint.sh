@@ -1,6 +1,6 @@
 #!/bin/bash
 set -ex
 
-if [ -d "/run/secrets/" ]; then
-  export MOODLE_DB_PASS=$(cat /run/secrets/db-password )
+if [ -d "/run" ]; then
+  echo '123'
 fi
