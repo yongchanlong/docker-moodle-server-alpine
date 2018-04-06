@@ -48,8 +48,8 @@ COPY run.sh /opt/apache2/run.sh
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-#ENTRYPOINT ["/entrypoint.sh"]
-ENTRYPOINT ["/bin/sh export AAA=1"]
+ENTRYPOINT ["/entrypoint.sh"]
+#ENTRYPOINT ["/bin/sh export AAA=1"]
 
 RUN chmod +x /opt/apache2/run.sh
 CMD ["/opt/apache2/run.sh"]
