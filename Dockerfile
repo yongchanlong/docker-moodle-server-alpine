@@ -48,7 +48,13 @@ COPY run.sh /opt/apache2/run.sh
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+# ENTRYPOINT ["/entrypoint.sh"]
+
+
+### In Dockerfile:
+RUN mkdir -p /etc/my_init.d
+ADD entrypoint.sh /etc/my_init.d/entrypoint.sh
+
 
 RUN chmod +x /opt/apache2/run.sh
 CMD ["/opt/apache2/run.sh"]
