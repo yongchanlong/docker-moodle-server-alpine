@@ -1,5 +1,5 @@
 #!/bin/sh
-export ABC='sdfsdf'
-
-chown apache:apache -R /var/moodledata
-exec /usr/sbin/httpd -D FOREGROUND
+if [ -d "/run/secrets/" ]; then
+  export MOODLE_DB_PASS=$(cat /run/secrets/db-password )
+fi
+exec /sbin/init
