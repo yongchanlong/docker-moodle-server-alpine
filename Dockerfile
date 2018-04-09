@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-LABEL maintainer="AndrewAi <yongchanlong@gmail.com>"
+LABEL maintainer="AndrewAI <yongchanlong@gmail.com>"
 
 EXPOSE 80
 
