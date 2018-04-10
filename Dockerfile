@@ -2,7 +2,7 @@ FROM alpine:edge
 
 LABEL maintainer="AndrewAI <yongchanlong@gmail.com>"
 
-EXPOSE 80
+EXPOSE 80 443
 
 VOLUME ["/var/moodledata"]
 
@@ -31,12 +31,7 @@ RUN apk update \
                        php7-opcache \
                        php7-tokenizer \
                        php7-simplexml \
-                       php7-ctype \
-                       openrc \
- # can't get ttys unless you run the container in privileged mode
- && sed -i '/tty/d' /etc/inittab \
- # can't mount tmpfs since not privileged
- && sed -i 's/mount -t tmpfs/# mount -t tmpfs/g' /lib/rc/sh/init.sh
+                       php7-ctype
 
 RUN cd /tmp \
  && git clone -b MOODLE_34_STABLE git://git.moodle.org/moodle.git --depth=1 \
