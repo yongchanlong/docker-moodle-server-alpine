@@ -37,7 +37,7 @@ RUN apk update \
  && sed -i 's/mount -t tmpfs/# mount -t tmpfs/g' /lib/rc/sh/init.sh
 
 RUN cd /tmp \
- && git clone -b MOODLE_32_STABLE git://git.moodle.org/moodle.git --depth=1 \
+ && git clone -b MOODLE_34_STABLE git://git.moodle.org/moodle.git --depth=1 \
  && rm -rf /var/www/localhost/htdocs \
  && mv /tmp/moodle /var/www/localhost/htdocs \
  && chown apache:apache -R /var/www/localhost/htdocs \
