@@ -50,5 +50,5 @@ RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log \
 
 COPY config-dist.php /var/www/localhost/htdocs/config.php
 COPY run.sh /opt/apache2/run.sh
-
+RUN chmod +x /opt/apache2/run.sh
 CMD ["/opt/apache2/run.sh"]
