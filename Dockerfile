@@ -1,15 +1,8 @@
 FROM alpine:edge
 
-LABEL maintainer="German Lashevich <german.lashevich@gmail.com>" \
-      org.label-schema.schema-version="1.0.0-rc.1" \
-      org.label-schema.name="zebradil/docker-moodle" \
-      org.label-schema.version="3.2-1" \
-      org.label-schema.description="Lightweight Moodle container based on Alpine Linux" \
-      org.label-schema.vcs-url="https://github.com/Zebradil/docker-moodle.git"
+LABEL maintainer="AndrewAI <yongchanlong@gmail.com>"
 
 EXPOSE 80
-
-VOLUME ["/var/moodledata"]
 
 RUN apk update \
  && apk add --no-cache \
@@ -36,7 +29,12 @@ RUN apk update \
                        php7-opcache \
                        php7-tokenizer \
                        php7-simplexml \
-                       php7-ctype
+                       php7-ctype \
+                       openrc \
+ # can't get ttys unless you run the container in privileged mode
+ && sed -i '/tty/d' /etc/inittab \
+ # can't mount tmpfs since not privileged
+ && sed -i 's/mount -t tmpfs/# mount -t tmpfs/g' /lib/rc/sh/init.sh
 
 RUN cd /tmp \
  && git clone -b MOODLE_32_STABLE git://git.moodle.org/moodle.git --depth=1 \
