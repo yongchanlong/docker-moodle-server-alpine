@@ -4,6 +4,8 @@ LABEL maintainer="AndrewAI <yongchanlong@gmail.com>"
 
 EXPOSE 80
 
+VOLUME ["/var/moodledata"]
+
 RUN apk update \
  && apk add --no-cache \
                        git \
