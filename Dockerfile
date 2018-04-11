@@ -34,7 +34,7 @@ RUN apk update \
                        php7-ctype
 
 RUN cd /tmp \
- && git clone -b MOODLE_33_STABLE git://git.moodle.org/moodle.git --depth=1 \
+ && git clone -b MOODLE_34_STABLE git://git.moodle.org/moodle.git --depth=1 \
  && rm -rf /var/www/localhost/htdocs \
  && mv /tmp/moodle /var/www/localhost/htdocs \
  && chown apache:apache -R /var/www/localhost/htdocs \
