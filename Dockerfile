@@ -31,7 +31,8 @@ RUN apk update \
                        php7-opcache \
                        php7-tokenizer \
                        php7-simplexml \
-                       php7-ctype
+                       php7-ctype \
+                       php7-fileinfo # 2018/04/11 update moodle 3.4, fix php_extension	fileinfo miss problem
 
 RUN cd /tmp \
  && git clone -b MOODLE_34_STABLE git://git.moodle.org/moodle.git --depth=1 \
