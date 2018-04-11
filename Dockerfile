@@ -4,7 +4,7 @@ LABEL maintainer="AndrewAI <yongchanlong@gmail.com>"
 
 EXPOSE 80 443
 
-VOLUME ["/var/moodledata"]
+WORKDIR /var/moodledata/
 
 RUN apk update \
  && apk add --no-cache \
