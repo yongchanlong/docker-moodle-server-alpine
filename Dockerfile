@@ -8,6 +8,7 @@ VOLUME ["/var/moodledata"]
 
 RUN apk update \
  && apk add --no-cache \
+                       tzdata \
                        git \
                        apache2 \
                        php7 \
@@ -39,8 +40,9 @@ RUN cd /tmp \
  && rm -rf /var/www/localhost/htdocs \
  && mv /tmp/moodle /var/www/localhost/htdocs \
  && chown apache:apache -R /var/www/localhost/htdocs \
- && mkdir /run/apache2
-
+ && mkdir /run/apache2 \
+ && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+ 
 RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log \
  && ln -sf /proc/self/fd/1 /var/log/apache2/error.log
 
